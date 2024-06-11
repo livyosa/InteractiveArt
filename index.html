@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Put The Mona Lisa Back Together Again or Make Your Own Art</title>
+
+    <style>
+/* Media query for horizontal layout */
+@media (orientation: landscape) {
+    .container {
+        flex-direction: row; /* Switch to row layout */
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .art-container {
+        flex-grow: 1; /* Allow art container to take remaining horizontal space */
+    }
+
+    .controls {
+        flex-shrink: 0; /* Prevent controls from shrinking */
+    }
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100px; /* Make container take full height of viewport */
+    margin-top: 500px; 
+}
+
+header, footer {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 10px 0;
+}
+
+main {
+    display: flex;
+    flex-grow: 1; /* Allow main section to take remaining vertical space */
+    flex-direction: column;
+}
+
+.art-container {
+    position: relative;
+    width: 100%;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    flex-grow: 1; /* Allow art container to take remaining vertical space */
+}
+
+.controls {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+    background: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+
+     
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            
+        }
+
+        header, footer {
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 10px 0;
+        }
+
+        main {
+            display: grid; /* Use grid layout */
+            grid-template-columns: 1fr 1fr; /* Two equal columns */
+            gap: 20px; /* Gap between columns */
+        }
+
+        .art-container {
+            position: relative;
+            width: 100%; /* Full width */
+            border: 1px solid #ccc;
+            overflow: hidden;
+            margin-top: 500px;
+
+        }
+
+        /* Rotate art images based on input value */
+        .art-image {
+            position: absolute;
+            max-width: 100%;
+            height: auto;
+            transform-origin: center center;
+        }
+        
+        .controls {
+            width: auto;
+            box-sizing: border-box;
+            overflow: auto;
+            margin-top: 90px; /* Add margin to the top */
+            grid-column: 1 / span 3; /* Adjust span as needed to fit the controls */
+            grid-row: 4; /* This should place it below your current grid items */
+            background: #f0f0f0; /* Background color for controls */
+            box-sizing: border-box;
+            overflow: auto; /* Add scroll if controls overflow */
+                }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+        /* New styles for the controls */
+
+        /* Add styles for uploaded images if needed */
+        #upload-section {
+            margin-top: 20px;
+            
+        }
+
+        .art-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+            /* Adjust the grid placement for controls */
+        @media (max-width: 768px) {
+            main {
+                    grid-template-columns: 1fr; /* Single column layout */
+                }
+
+                .controls {
+                    grid-column: 1; /* Place controls in the first column */
+                    grid-row: 2; /* Place controls in the second row */
+                    position: fixed; /* Fix controls container */
+                    bottom: 0; /* Align controls to the bottom of the viewport */
+                    width: 100%; /* Make controls container full width */
+                    z-index: 1; /* Ensure controls appear above images */
+                }
+                
+            .art-container {
+                    margin-top: 0; /* Remove top margin */
+                }
+            }
+
+/* code form css in mac gallery - manipulated by chat gpt*/
+.rotate {
+    width: 100%; /* Ensure input elements fill their container */
+    margin-bottom: 10px; /* Add space between inputs */
+}
+
+.grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(228px, 1fr)); /* Adjust columns based on content and screen size */
+        grid-auto-rows: minmax(245px, auto); /* Adjust row height based on content */
+        gap: 15px 25px;
+        margin-top: 60px;
+    }
+
+.grid-item {
+    width: 228px;
+    height: 245px;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.grid-middle {
+    margin-top: -50px;
+}
+
+.grid-item:nth-child(1) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.grid-item:nth-child(2) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.grid-item:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.grid-item:nth-child(4) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.grid-item:nth-child(5) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.grid-item:nth-child(6) {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.grid-item:nth-child(7) {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.grid-item:nth-child(8) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.grid-item:nth-child(9) {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.centered-h3 {
+    text-align: center; /* Horizontally center text */
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Horizontally center children elements */
+    align-items: center; /* Vertically center children elements */
+    height: 100%; /* Ensure the container takes up full height */
+    margin: 0; /* Remove any default margin */
+}
+/* New CSS class for grid items of uploaded images */
+.new-grid-item {
+    width: 227.99px;
+    height: 223.79px;
+    background-size: 100% 100%;
+    background-position: center;
+}
+/* CSS for the controls of newly uploaded images */
+.new-control-group {
+    width: 227.99px; /* Set the width */
+    height: 223.79px; /* Set the height */
+    background-color: #f0f0f0; /* Background color */
+    padding: 20px; /* Padding around the controls */
+    box-sizing: border-box; /* Include padding in the width and height */
+    position: relative; /* Positioning for the remove button */
+}
+
+
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interactive Art Page</h1>
+            <h3 class="centered-h3">Put Together Mona Lisa, upload your own photos, and draw!</h3>
+        </header>
+        <main>
+
+
+            <!-- this is the html code to put the controls on the right of the images -->
+            <div class="art-container" id="art-container">
+                <!-- Placeholders for images with random sources -->
+                <img src="images/mona1.jpg" id="image1" class="art-image" alt="Art Image 1">
+                <img src="images/mona2.jpg" id="image2" class="art-image" alt="Art Image 2">
+                <img src="images/mona3.jpg" id="image3" class="art-image" alt="Art Image 3">
+                <img src="images/mona4.jpg" id="image4" class="art-image" alt="Art Image 4">
+                <img src="images/mona5.gif" id="image5" class="art-image" alt="Art Image 5">
+                <img src="images/mona6.jpg" id="image6" class="art-image" alt="Art Image 6">
+                <img src="images/mona7.jpg" id="image7" class="art-image" alt="Art Image 7">
+                <img src="images/mona8.jpg" id="image8" class="art-image" alt="Art Image 8">
+                <img src="images/mona9.jpg" id="image9" class="art-image" alt="Art Image 9">
+            </div>
+
+            <div class="controls" id="controls">
+                <div class="control-group" id="controls-image1"></div>
+                <div class="control-group" id="controls-image2"></div>
+                <div class="control-group" id="controls-image3"></div>
+                <div class="control-group" id="controls-image4"></div>
+                <div class="control-group" id="controls-image5"></div>
+                <div class="control-group" id="controls-image6"></div>
+                <div class="control-group" id="controls-image7"></div>
+                <div class="control-group" id="controls-image8"></div>
+                <div class="control-group" id="controls-image9"></div>
+            </div>
+            <div class="grid-container">
+                <!-- Existing grid items with controls -->
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image1">
+                        <h3>Control B</h3>
+                        <label for="blend-mode-image1">Blend Mode:</label>
+                        <select id="blend-mode-image1" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image1">Position X:</label>
+                        <input type="range" id="position-x-image1" class="position-x" name="position-x-image1" min="0" max="100">
+                        
+                        <label for="position-y-image1">Position Y:</label>
+                        <input type="range" id="position-y-image1" class="position-y" name="position-y-image1" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image1" class="rotate" name="rotate-image1" min="0" max="360" value="0">
+                                    
+                    </div>
+                </div>
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image2">
+                        <h3>Control A</h3>
+                        <label for="blend-mode-image2">Blend Mode:</label>
+                        <select id="blend-mode-image2" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image2">Position X:</label>
+                        <input type="range" id="position-x-image2" class="position-x" name="position-x-image2" min="0" max="100">
+                        
+                        <label for="position-y-image2">Position Y:</label>
+                        <input type="range" id="position-y-image2" class="position-y" name="position-y-image2" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image2" class="rotate" name="rotate-image2" min="0" max="360" value="0">
+                    </div>
+                </div>
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image3">
+                        <h3>Control E</h3>
+                        <label for="blend-mode-image3">Blend Mode:</label>
+                        <select id="blend-mode-image3" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image3">Position X:</label>
+                        <input type="range" id="position-x-image3" class="position-x" name="position-x-image3" min="0" max="100">
+                        
+                        <label for="position-y-image3">Position Y:</label>
+                        <input type="range" id="position-y-image3" class="position-y" name="position-y-image3" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image3" class="rotate" name="rotate-image3" min="0" max="360" value="0">
+                    </div>
+                </div>
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image4">
+                        <h3>Control C</h3>
+                        <label for="blend-mode-image4">Blend Mode:</label>
+                        <select id="blend-mode-image4" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image4">Position X:</label>
+                        <input type="range" id="position-x-image4" class="position-x" name="position-x-image4" min="0" max="100">
+                        
+                        <label for="position-y-image4">Position Y:</label>
+                        <input type="range" id="position-y-image4" class="position-y" name="position-y-image4" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image4" class="rotate" name="rotate-image4" min="0" max="360" value="0">
+                    </div>
+                </div>
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image5">
+                        <h3>Control D</h3>
+                        <label for="blend-mode-image5">Blend Mode:</label>
+                        <select id="blend-mode-image5" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image5">Position X:</label>
+                        <input type="range" id="position-x-image5" class="position-x" name="position-x-image5" min="0" max="100">
+                        
+                        <label for="position-y-image5">Position Y:</label>
+                        <input type="range" id="position-y-image5" class="position-y" name="position-y-image5" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image5" class="rotate" name="rotate-image5" min="0" max="360" value="0">
+ 
+                    </div>
+                </div>
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image6">
+                        <h3>Control I</h3>
+                        <label for="blend-mode-image6">Blend Mode:</label>
+                        <select id="blend-mode-image6" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image6">Position X:</label>
+                        <input type="range" id="position-x-image6" class="position-x" name="position-x-image6" min="0" max="100">
+                        
+                        <label for="position-y-image6">Position Y:</label>
+                        <input type="range" id="position-y-image6" class="position-y" name="position-y-image6" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image6" class="rotate" name="rotate-image6" min="0" max="360" value="0">
+ 
+                    </div>
+                </div>
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image7">
+                        <h3>Control F</h3>
+                        <label for="blend-mode-image7">Blend Mode:</label>
+                        <select id="blend-mode-image7" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image7">Position X:</label>
+                        <input type="range" id="position-x-image7" class="position-x" name="position-x-image7" min="0" max="100">
+                        
+                        <label for="position-y-image7">Position Y:</label>
+                        <input type="range" id="position-y-image7" class="position-y" name="position-y-image7" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image7" class="rotate" name="rotate-image7" min="0" max="360" value="0">
+ 
+                    </div>
+                </div>
+            
+                <div class="grid-item">
+                    <div class="control-group" id="controls-image8">
+                        <h3>Control G</h3>
+                        <label for="blend-mode-image8">Blend Mode:</label>
+                        <select id="blend-mode-image8" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                        
+                        <label for="position-x-image8">Position X:</label>
+                        <input type="range" id="position-x-image8" class="position-x" name="position-x-image8" min="0" max="100">
+                        
+                        <label for="position-y-image8">Position Y:</label>
+                        <input type="range" id="position-y-image8" class="position-y" name="position-y-image8" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image8" class="rotate" name="rotate-image8" min="0" max="360" value="0">
+ 
+                    </div>
+                </div>
+            
+            <div class="grid-item">
+                    <div class="control-group" id="controls-image9">
+                        <h3>Control J</h3>
+                        <label for="blend-mode-image9">Blend Mode:</label>
+                        <select id="blend-mode-image9" class="blend-mode">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <!-- Add more blend modes as needed -->
+                        </select>
+                       
+                        <label for="position-x-image9">Position X:</label>
+                        <input type="range" id="position-x-image9" class="position-x" name="position-x-image9" min="0" max="100">
+                        
+                        <label for="position-y-image8">Position Y:</label>
+                        <input type="range" id="position-y-image9" class="position-y" name="position-y-image9" min="0" max="100">
+                        <label for="position-y-image4">Rotation:</label>
+                        <input type="range" id="rotate-image9" class="rotate" name="rotate-image9" min="0" max="360" value="0">
+                    
+                    </div>        
+                        <div id="upload-section">
+                            <label for="image-upload">Upload an image:</label>
+                            <input type="file" id="image-upload" accept="image/*">
+                            <button id="upload-image">Upload</button>
+                        </div>
+                    </div>
+            </div>
+            <div id="email-section">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <button id="send-email">Send Art</button>
+            </div>
+        </main>
+        <footer>
+            <p>© Art by you</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
